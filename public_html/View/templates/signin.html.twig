@@ -1,0 +1,27 @@
+{% extends "index.html.twig" %}
+
+{% block cssFiles %}<link rel="stylesheet" href="view/css/auth.css">{% endblock %}
+{% block title %}authorisation page{% endblock %}
+{% block body %}
+    {{ parent() }}
+{% endblock %}
+{% block page %}
+    {% if (sys_error == true) %}
+        <div class="error err_message" >
+            <p>Something Went Wrong, Please try again later</p>
+        </div>
+    {% elseif (login_error == true) %}
+        <div class="error err_message" >
+            <p>login or password is incorrect</p>
+        </div>
+    {% endif %}
+    <form method="post" action="/login">
+        <div class="signin">
+            <span class="">Login :</span>
+            <input type="email" name="login" class="{{ error }}" required placeholder="Enter a valid email address" value="{{ login }}">
+            <span class="last">Password :</span>
+            <input type="password" id="password" name="password" required/>
+            <input type="submit" class="login_btn" value="Login"/>
+        </div>
+    </form>
+{% endblock %}

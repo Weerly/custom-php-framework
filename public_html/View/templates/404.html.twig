@@ -1,0 +1,14 @@
+{% extends "index.html.twig" %}
+
+{% block cssFiles %}<link rel="stylesheet" href="view/css/not_found.css">{% endblock %}
+{% block title %}page not found{% endblock %}
+{% block body %}
+    {{ parent() }}
+{% endblock %}
+    {% block page %}
+        <div class="not_found">
+            <span class="first">Page, you are searching</span>
+            <span class="code">404</span>
+            <span class="last">Not Found</span>
+        </div>
+    {% endblock %}

@@ -1,0 +1,23 @@
+.not_found {
+    margin-left: 30%;
+}
+
+.not_found span {
+    display: block;
+}
+
+.first, .last {
+    font-size: 32pt;
+}
+
+.first {
+
+}
+
+.code {
+    font-size: 177pt;
+}
+
+.last {
+    padding-left: 11%;
+}

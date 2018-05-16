@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="view/css/main.css">
+        {% block cssFiles %}{% endblock %}
+        {% block jsFiles %}{% endblock %}
+        <title>{% block title %}{% endblock %} - Test MVC App</title>
+    {% endblock %}
+</head>
+{% block body %}
+<body>
+    <div id="wrapper">
+        <div class="header">
+            <div class="banner"></div>
+            {% block menu %}
+                <div class="menu">
+                    {% if (auth == true) %}
+                        <div class="menu_link"><a href="/edit">Edit Profile</a></div>
+                        <div class="menu_link"><a href="/logout">Log Out</a></div>
+                        <div class="menu_greetings"><span>Hi, {{ user_name }}!</span></div>
+                    {% else %}
+                        <div class="menu_link"><a href="/signin">Sign In</a></div>
+                        <div class="menu_link"><a href="/signup">Sign Up</a></div>
+                        <div class="menu_greetings"><span>Hi, Guest!</span></div>
+                    {% endif %}
+                </div>
+            {% endblock %}
+        </div>
+        {% block page %}{% endblock %}
+    </div>
+</body>
+{% endblock %}
+</html>
