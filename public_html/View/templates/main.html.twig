@@ -1,0 +1,32 @@
+{% extends "index.html.twig" %}
+
+{% block title %}Main{% endblock %}
+{% block body %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page %}
+    {% if (empty_error == true) %}
+        <div class="empty_error message" >
+            <p>attempt to deceive the system</p>
+            <p>you passed empty data</p>
+        </div>
+    {% else %}
+        {% if (first_run == true) %}
+            <div class="first_run message" >
+                <h1>Hi, {{ user_name }}</h1>
+                <p>Thank you for registration on our portal</p>
+            </div>
+        {% endif %}
+        {% if (not_activated == true) %}
+            <div class="not_activated message" >
+                <p>Your account is not activated</p>
+                <p>Please follow link in email to activate your account </p>
+            </div>
+            <div class="send_email proposition">
+                <p>if you have tried to activate and an error has occurred,</p>
+                <p> please try to <a href="/sendEmail">send another email</a> to activate your account</p>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

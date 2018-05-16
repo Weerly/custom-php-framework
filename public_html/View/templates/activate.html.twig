@@ -1,0 +1,42 @@
+{% extends 'index.html.twig' %}
+
+{% block cssFiles %}<link rel="stylesheet" href="view/css/activate.css">{% endblock %}
+{% block title %}activation page{% endblock %}
+{% block body %}
+    {{ parent() }}
+{% endblock %}
+{% block page %}
+    {% if (false_activate == true)  %}
+        {% if (auth == true) %}
+            {% if (false_code == true) %}
+                <div class="false_activate result_activate">
+                    <p>It looks like there is no activation code</p>
+                    <p>It`s bad , but account activation has been canceled </p>
+                </div>
+            {% else %}
+                <div class="false_activate result_activate">
+                    <p>Something went wrong</p>
+                    <p>It`s bad , but account activation has been canceled </p>
+                </div>
+                <div class="send_email proposition">
+                    <p>if an error occurs,</p>
+                    <p> please try to <a href="/sendEmail">send another email</a> to activate your account</p>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="false_activate result_activate">
+                <p>It looks like there is no activation code</p>
+            </div>
+            <div class="try_signup proposition">
+                <p>Hi! Guest</p>
+                <p> please try to <a href="/signup">Sign up</a> to create your account,</p>
+                <p>and than follow link in email you will receive.</p>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="success_activate result_activate">
+            <p>Congratulation!!!</p>
+            <p>Account has been activated</p>
+        </div>
+    {% endif %}
+{% endblock %}

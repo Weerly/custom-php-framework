@@ -1,0 +1,46 @@
+{% extends "index.html.twig" %}
+
+{% block jsFiles %}<script type="application/javascript" src="view/js/edit.js"></script>{% endblock %}
+{% block cssFiles %}<link rel="stylesheet" href="view/css/auth.css">{% endblock %}
+{% block title %}edit profile page{% endblock %}
+{% block body %}
+    {{ parent() }}
+{% endblock %}
+{% block page %}
+    {% if (sys_error == true) %}
+        <div class="error err_message" >
+            <p>Something Went Wrong, Please try again later</p>
+        </div>
+    {% elseif (password_error == true) %}
+        <div class="error err_message" >
+            <p>can't change user data</p>
+            <p>current password is wrong</p>
+        </div>
+    {% elseif (empty_error == true) %}
+        <div class="error err_message" >
+            <p>attempt to deceive the system</p>
+            <p>you passed empty data</p>
+        </div>
+    {% elseif (success == true) %}
+        <div class="success suc_message" >
+            <p>data changed successfully</p>
+        </div>
+    {% endif %}
+    <form method="post" action="/edit">
+        <div class="edit">
+            <span class="">Name :</span>
+            <input type="text" name="name" required placeholder="Enter your name" value="{{ name }}">
+            <span class="last">new Password :</span>
+            <input type="password" id="password" name="new_password"/>
+            <span class="last">Repeat Password</span>
+            <input type="password" id="repeat"/>
+            <div class="access_block">
+                <div class="password_block">
+                    <span class="last">input current Password</span>
+                    <input type="password" name="old_password" required/>
+                </div>
+                <input type="submit" value="Save Changes" class="update_btn"/>
+            </div>
+        </div>
+    </form>
+{% endblock %}
